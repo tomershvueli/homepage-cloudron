@@ -1,0 +1,34 @@
+html {height: 100%; width: 100%;}
+body {font-family: sans-serif; background: url("../img/sayagata-400px.png") repeat; z-index: 1; height: 100%; width: 100%; background-position: center; background-attachment: fixed;}
+
+.hidden {display: none;}
+.menu-item {display: none; z-index: 3;}
+
+#bg-overlay {position: fixed; width: 100%; height: 100%; background-color: #fff; opacity: 0; z-index: 2; transition: .3s all;}
+body.menu-shown #bg-overlay {opacity: 0.3;}
+
+#mobile-menu-wrap {z-index: 3; position: absolute; top: 15px; left: 15px;}
+#mobile-menu-wrap a {font-size: 20px; padding: 20px 20px 20px 24px; display: block; color: #fff;}
+#mobile-menu-wrap a:hover {color: #fff;}
+
+.bg {border-radius: 5px; background-color: rgba(0, 0, 0, .5); padding: 20px;}
+.bg a {color: #fff;}
+
+#links-wrap {font-size: 70px; width: 50%; max-height: 50%; margin: 25% auto 0; overflow: hidden; padding: 50px; position: relative; overflow-y: scroll;}
+#links-wrap a {transition: .3s all;}
+#cloudron-main-link {margin-left: 15px;}
+#links-wrap .link {display: inline-block; float: left; text-align: center;}
+#links-wrap .link img {opacity: .8; transition: .3s all;}
+#links-wrap .link img:hover {opacity: 1;}
+
+#pic-info-wrap {color: #fff; font-size: 16px; position: absolute; bottom: 15px; left: 15px;}
+#pic-info-wrap a:hover, #pic-info-wrap a:active {color: #fff; text-decoration: none;}
+
+#clock-wrap {color: #fff; font-size: 20px; position: absolute; top: 15px; right: 15px;}
+
+@media (min-width: 768px) {
+  #links-wrap {margin-top: 15%; font-size: 80px;}
+}
+@media (min-width: 576px) {
+  #clock-wrap {font-size: 30px;}
+}
