@@ -1,0 +1,1 @@
+This folder is kept empty in the git repository as it will be used by the `hp_assets/lib/render_cloudron_app_icon.php` script to cache images that have already been fetched. 
