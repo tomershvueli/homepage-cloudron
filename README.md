@@ -29,11 +29,12 @@ Copy the config.sample.json file and rename to config.json. Be sure to update th
 ## Configure Homepage
 - `unlock_pattern` => Choose unlock pattern from [Mousetrap](https://craig.is/killing/mice)
 - `clock_format` => Choose pattern format from [PHP's date function](http://php.net/manual/en/function.date.php)
-- `hover_color` => The CSS color for menu items when hovered over
-- `time_to_refresh_bg` => Time, in milliseconds, until it will fetch the next background image
+- `hover_color` => The CSS color for menu items when hovered over. Defaults to `#999`. 
+- `time_to_refresh_bg` => Time, in milliseconds, until it will fetch the next background image. Defaults to `20000`. 
+- `show_menu_on_page_load` => Boolean as to whether the menu should be shown when you first load the page. Defaults to `false`.
 - `idle_timer` => Set a number of milliseconds here if you'd like to automatically hide the menu after a certain time of inactivity. Leave this attribute out entirely if you don't want an idle timer. 
-- `cloudron_api_url` => The url of your Cloudron dashboard, i.e. my.example.com. 
-- `cloudron_api_access_token` => An API access token so that we can query the apps installed in the Cloudron instance. You can get an API access token by visiting your Cloudron dashboard and adding an `/tokens` to the end of the url instead of `/apps`, i.e. my.example.com/#/tokens.
+- `cloudron_api_url` => The url of your Cloudron dashboard, i.e. `https://my.example.com`. 
+- `cloudron_api_access_token` => An API access token so that we can query the apps installed in the Cloudron instance. You can get an API access token by visiting your Cloudron dashboard and adding an `/profile` to the end of the url instead of `/apps`, i.e. `https://my.example.com/#/profile`.
 
 __NOTE__: PHP cURL is required for fetching external images.
 
