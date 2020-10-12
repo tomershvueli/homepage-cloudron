@@ -7,7 +7,8 @@
   $default_config = array(
     "show_menu_on_page_load" => false,
     "time_to_refresh_bg" => 20000,
-    "hover_color" => "#999"
+    "hover_color" => "#999",
+    "open_links_in_new_tab" => false
   );
   $config_file    = json_decode(file_get_contents("config.json"), true);
   $config         = array_merge($default_config, $config_file);

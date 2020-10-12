@@ -131,7 +131,8 @@ function renderCloudronApps() {
 
   $.config.apps.map((app) => {
     const appName = app.manifest.title;
-    const appDiv = `<div class="link col-md-4 col-sm-6 col-xs-12"><a href="https://${app.fqdn}" title="${appName}"><img src="hp_assets/lib/render_cloudron_app_icon.php?cloudron_app_id=${app.id}" height="80" width="80" alt="${appName}" /></a></div>`;
+    const newTabStr = $.config.open_links_in_new_tab ? " target=\"_blank\" rel=\"noopener noreferrer\"" : "";
+    const appDiv = `<div class="link col-md-4 col-sm-6 col-xs-12"><a href="https://${app.fqdn}" title="${appName}"${newTabStr}><img src="hp_assets/lib/render_cloudron_app_icon.php?cloudron_app_id=${app.id}" height="80" width="80" alt="${appName}" /></a></div>`;
     wrapperEl.innerHTML += appDiv;
   });
 
@@ -142,7 +143,11 @@ function renderCloudronApps() {
     Mousetrap.bind(`${oneBasedIndex}`, function() {
       if (!menuHidden) {
         let link = $(`.link:eq(${i}) a`).attr("href");
-        window.location = link;
+        if ($.config.open_links_in_new_tab) {
+          window.open(link, '_blank');
+        } else {
+          window.location = link;
+        }
       }
     });
   }

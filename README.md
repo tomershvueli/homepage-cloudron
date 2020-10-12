@@ -33,6 +33,8 @@ Copy the config.sample.json file and rename to config.json. Be sure to update th
 - `time_to_refresh_bg` => Time, in milliseconds, until it will fetch the next background image. Defaults to `20000`. 
 - `show_menu_on_page_load` => Boolean as to whether the menu should be shown when you first load the page. Defaults to `false`.
 - `idle_timer` => Set a number of milliseconds here if you'd like to automatically hide the menu after a certain time of inactivity. Leave this attribute out entirely if you don't want an idle timer. 
+- `show_menu_on_page_load` => Boolean whether to show the menu on page load, otherwise hide it. Defaults to false, i.e. hidden. 
+- `open_links_in_new_tab` => Boolean whether to open all links in a new tab. Defaults to false, i.e. open links in current tab. 
 - `cloudron_api_url` => The url of your Cloudron dashboard, i.e. `https://my.example.com`. 
 - `cloudron_api_access_token` => An API access token so that we can query the apps installed in the Cloudron instance. You can get an API access token by visiting your Cloudron dashboard and adding an `/profile` to the end of the url instead of `/apps`, i.e. `https://my.example.com/#/profile`.
 
