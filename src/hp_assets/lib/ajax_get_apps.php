@@ -11,7 +11,16 @@
     $url = "{$config['cloudron_api_url']}/api/v1/apps?access_token={$config['protected']['cloudron_api_access_token']}";
     $json = json_decode(curl_get_contents($url), true);
 
-    echo json_encode(array('success' => 1, 'apps' => $json['apps']));
+    // Let's clean up our 'apps' response object to only send back pertinent information
+    $apps = array_map(function($app) {
+      return array(
+        'id' => $app['id'],
+        'fqdn' => $app['fqdn'],
+        'title' => $app['manifest']['title']
+      );
+    }, $json['apps']);
+
+    echo json_encode(array('success' => 1, 'apps' => $apps));
   }
 
   die();
