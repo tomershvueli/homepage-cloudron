@@ -113,31 +113,47 @@ function updateClock () {
   document.getElementById("clock").textContent = new Date().format($.config.clock_format);
 }
 
+// Ensure that any URL has an 'http://' or 'https://' prepended
+function httpize(url) {
+  return (url.indexOf("://") === -1) ? `http://${url}` : url;
+}
+
 // Do async request to get Cloudron apps
 function getCloudronApps() {
   $.getJSON("hp_assets/lib/ajax_get_apps.php").done(function(data) {
     if (data['success']) {
       $.config.apps = data['apps'] || [];
 
-      // Trigger the rendering of the apps
-      renderCloudronApps();
+      // Create a single array that is the combination of our Cloudron apps and additional links
+      $.config.all_links = [].concat($.config.apps, $.config.custom_links || []);
+
+      // Sort our super array by ordinal
+      $.config.all_links.sort((a, b) => a.ordinal > b.ordinal);
+
+      // Trigger the rendering of all of our links
+      renderLinks();
     }
   });
 }
 
 // Once we have populated our apps in the config variable, render them properly
-function renderCloudronApps() {
+function renderLinks() {
   const wrapperEl = document.getElementById("links-wrap");
 
-  $.config.apps.map((app) => {
+  $.config.all_links.map((app) => {
     const appName = app.title;
     const newTabStr = $.config.open_links_in_new_tab ? " target=\"_blank\" rel=\"noopener noreferrer\"" : "";
-    const appDiv = `<div class="link col-md-4 col-sm-6 col-xs-12"><a href="https://${app.fqdn}" title="${appName}"${newTabStr}><img src="hp_assets/lib/render_cloudron_app_icon.php?cloudron_app_id=${app.id}" height="80" width="80" alt="${appName}" /></a></div>`;
+    const iconOrImage = app.image ?
+      `<img src="${app.image}" height="80" width="80" alt="${appName}" />`
+      :
+      `<i class="fa fa-${app.icon}"></i>`;
+
+    const appDiv = `<div class="link col-md-4 col-sm-6 col-xs-12"><a href="${httpize(app.url)}" title="${appName}"${newTabStr}>${iconOrImage}</a></div>`;
     wrapperEl.innerHTML += appDiv;
   });
 
   // Set key bindings for the first 9 apps
-  let appsLengthOrNine = $.config.apps.length >= 9 ? 9 : $.config.apps.length;
+  let appsLengthOrNine = $.config.all_links.length >= 9 ? 9 : $.config.all_links.length;
   for (let i = 0; i < appsLengthOrNine; i++) {
     let oneBasedIndex = i + 1;
     Mousetrap.bind(`${oneBasedIndex}`, function() {

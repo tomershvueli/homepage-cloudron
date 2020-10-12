@@ -8,6 +8,17 @@
   "show_menu_on_page_load": false,
   "open_links_in_new_tab": false,
   "cloudron_api_url": "",
+  "custom_links": [
+    {
+      "url": "example.com",
+      "title": "Example",
+      "icon": "star",
+      "ordinal": 1
+    }
+  ],
+  "cloudron_app_ordinals": {
+    "app-guid": 123
+  },
   "protected": {
     "cloudron_api_access_token": "",
     "custom_url" : "",
